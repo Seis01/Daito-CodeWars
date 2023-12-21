@@ -39,10 +39,39 @@ def sample_tests():
 def is_valid_walk(walk):
     #determine if walk is valid
     pass
-
-
+    
 '''
+
 # Solution:
+
+def is_valid_walk(walk):
+    # Check if the walk takes exactly ten minutes
+    if len(walk) != 10:
+        return False
+
+    # Count the number of steps in each direction
+    north = walk.count('n')
+    south = walk.count('s')
+    east = walk.count('e')
+    west = walk.count('w')
+
+    # Check if the number of steps north is equal to the number of steps south
+    # and the number of steps east is equal to the number of steps west
+    return north == south and east == west
+
+
+# Let's test it using the provided sample tests:
+print(is_valid_walk(['n','s','n','s','n','s','n','s','n','s']))  # True
+print(is_valid_walk(['w','e','w','e','w','e','w','e','w','e','w','e']))  # False
+print(is_valid_walk(['w']))  # False
+print(is_valid_walk(['n','n','n','s','n','s','n','s','n','s']))  # False
 
 
 # Description:
+'''
+To determine if a walk is valid, you can check whether it takes exactly ten minutes and whether it returns to the starting 
+point (i.e., the number of steps to the north 'n' should be equal to the number of steps to the south 's', and the number 
+of steps to the east 'e' should be equal to the number of steps to the west 'w').
+Now can use this function to check if a walk is valid. It returns True if the walk is valid (takes ten minutes and returns 
+to the starting point) and False otherwise.
+'''
