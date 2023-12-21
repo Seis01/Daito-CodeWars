@@ -57,3 +57,46 @@ def friendly_numbers(m, n):
 '''
 
 # Solution:
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def reduce_fraction(num, den):
+    greatest_common_divisor = gcd(num, den)
+    return f"{num // greatest_common_divisor}/{den // greatest_common_divisor}"
+
+def abundancy(num):
+    divisors_sum = sum(i for i in range(1, num + 1) if num % i == 0)
+    return reduce_fraction(divisors_sum, num)
+
+def friendly_numbers(m, n):
+    abundancy_m = abundancy(m)
+    abundancy_n = abundancy(n)
+
+    if abundancy_m == abundancy_n:
+        return "Friendly!"
+    else:
+        return f"{abundancy_m} {abundancy_n}"
+
+# Test cases
+print(friendly_numbers(6, 28))  # "Friendly!"
+print(friendly_numbers(3, 9))   # "4/3 13/9"
+print(friendly_numbers(10, 11)) # "9/5 12/11"
+print(friendly_numbers(138, 644)) # "Friendly!"
+
+
+
+
+# Description:
+'''
+To determine if two numbers m and n are friendly pairs, we need to calculate their abundancies A(m) and A(n) and compare them.
+If A(m) is equal to A(n), they are friendly pairs. If not, we need to return their respective abundancies as reduced rational strings.
+
+To calculate the abundancy of a number n, we sum the divisors of n and divide by n. To calculate the divisors, we iterate through numbers
+from 1 to n and add those that divide n evenly.
+
+This code first calculates the abundancies of m and n, then compares them. If they are equal, it returns "Friendly!" as required. Otherwise,
+it returns their respective abundancies as reduced rational strings.
+
+'''
