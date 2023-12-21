@@ -39,10 +39,11 @@ def sample_tests():
 def is_valid_walk(walk):
     #determine if walk is valid
     pass
-
-
+    
 '''
+
 # Solution:
+
 def is_valid_walk(walk):
     # Check if the walk takes exactly ten minutes
     if len(walk) != 10:
@@ -58,6 +59,8 @@ def is_valid_walk(walk):
     # and the number of steps east is equal to the number of steps west
     return north == south and east == west
 
+
+# Let's test it using the provided sample tests:
 print(is_valid_walk(['n','s','n','s','n','s','n','s','n','s']))  # True
 print(is_valid_walk(['w','e','w','e','w','e','w','e','w','e','w','e']))  # False
 print(is_valid_walk(['w']))  # False
