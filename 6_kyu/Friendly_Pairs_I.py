@@ -58,28 +58,34 @@ def friendly_numbers(m, n):
 
 # Solution:
 def gcd(a, b):
+    # Function to calculate the greatest common divisor (GCD) of two numbers
     while b:
         a, b = b, a % b
     return a
 
 def reduce_fraction(num, den):
-    greatest_common_divisor = gcd(num, den)
+    # Function to reduce a fraction to its lowest terms
+    greatest_common_divisor = gcd(num, den)  # Find the GCD of the numerator and denominator
     return f"{num // greatest_common_divisor}/{den // greatest_common_divisor}"
 
 def abundancy(num):
-    divisors_sum = sum(i for i in range(1, num + 1) if num % i == 0)
-    return reduce_fraction(divisors_sum, num)
+    # Function to calculate the abundancy of a number
+    divisors_sum = sum(i for i in range(1, num + 1) if num % i == 0)  # Sum the divisors of the number
+    return reduce_fraction(divisors_sum, num)  # Return the abundancy in reduced fractional form
 
 def friendly_numbers(m, n):
-    abundancy_m = abundancy(m)
-    abundancy_n = abundancy(n)
+    # Function to determine if numbers m and n are friendly pairs
+    abundancy_m = abundancy(m)  # Calculate the abundancy for m
+    abundancy_n = abundancy(n)  # Calculate the abundancy for n
 
     if abundancy_m == abundancy_n:
+        # If the abundancies are equal, the numbers are friendly
         return "Friendly!"
     else:
+        # Otherwise, return the abundancies in reduced fractional form
         return f"{abundancy_m} {abundancy_n}"
 
-# Test cases
+# Example tests
 print(friendly_numbers(6, 28))  # "Friendly!"
 print(friendly_numbers(3, 9))   # "4/3 13/9"
 print(friendly_numbers(10, 11)) # "9/5 12/11"
