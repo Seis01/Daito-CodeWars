@@ -178,5 +178,28 @@ def boolfuck(code, input=""):
 In this task, I created an interpreter for the esoteric programming language Boolfuck. Boolfuck is a variation of Brainfuck that operates with bits instead of bytes. 
 The main challenge was to accurately interpret Boolfuck code, processing its instructions and managing data according to the language's rules.
 
+Key Steps in the Solution:
+1. Input Processing: The input string is converted into a sequence of bits. Since Boolfuck operates with bits in little-endian order, each input character is converted into 
+   an 8-bit binary representation, which is then reversed.
+2. Tape and Pointer Initialization: Boolfuck uses a "tape" of bits that can infinitely expand in both directions. The pointer initially is at the first bit of the tape.
+
+3. Command Interpretation: A loop iterates through each command in the Boolfuck code and performs corresponding actions:
+
+> and < move the pointer right and left, respectively, expanding the tape as needed.
++ toggles (inverts) the bit at the pointer's position.
+, reads a bit from the input sequence and writes it to the current pointer position.
+; adds the bit at the pointer to the output sequence.
+[ and ] form loops, allowing code to be repeated until the bit under the pointer becomes zero.
+
+4. Output Data Processing: The collected output bits are grouped into bytes (8 bits each). If the last group contains fewer than 8 bits, it is padded with zeros to form a full byte. Each byte is then converted back into a character, considering the little-endian order.
+
+Techniques Used and Their Justification:
+- Dynamic Tape: In Boolfuck, the tape can infinitely expand. I used a Python list to represent the tape, as it allows easy addition of elements on both ends.
+- Bitwise Operations: Using XOR (^) for toggling bits is efficient and convenient, as it allows inverting a bit without needing to check its current state.
+- Handling Little-Endian Order: When reading input and writing output, the little-endian bit order is considered, which is a key aspect in Boolfuck. This is achieved by reversing the order of bits in bytes.
+- Bracket Counting for Loops: To process the loops [ and ], bracket counting is used, which allows correctly finding matching pairs of brackets and controlling the flow of code execution.
+
+This approach ensures compliance with the Boolfuck specification and allows for the correct interpretation of the provided code, handling input and output according to the language's rules.
+
 '''
 
